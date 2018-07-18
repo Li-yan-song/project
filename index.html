@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 25px;
+        }
+
+        ul,
+        li {
+            list-style-type: none;
+            text-align: center;
+        }
+
+        .first {
+            width: 96px;
+            height: 25px;
+            position: relative;
+            border: 1px solid #e5e5e5;
+            border-right: none;
+            background-color: #f6f6f6;
+        }
+
+        .first::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 11.5px 0 11.5px 11.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #f6f6f6;
+            position: absolute;
+            top: 0px;
+            left: 95px;
+        }
+
+        .first .right {
+            width: 0;
+            height: 0;
+            border-width: 12.5px 0 12.5px 12.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #e5e5e5;
+            position: absolute;
+            top: -1px;
+            left: 96px;
+        }
+
+        .middle {
+            width: 96px;
+            height: 25px;
+            position: relative;
+            border: 1px solid #e5e5e5;
+            border-left: none;
+            border-right: none;
+            background-color: #f6f6f6;
+        }
+
+        .middle::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 11.5px 0 11.5px 11.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #f6f6f6;
+            position: absolute;
+            top: 0px;
+            left: 95px;
+        }
+
+        .middle .right {
+            width: 0;
+            height: 0;
+            border-width: 12.5px 0 12.5px 12.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #e5e5e5;
+            position: absolute;
+            top: -1px;
+            left: 96px;
+        }
+
+        .middle::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 11.5px 0 11.5px 11.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent white;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+        }
+
+        .middle .left {
+            width: 0;
+            height: 0;
+            border-width: 12.5px 0 12.5px 12.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #e5e5e5;
+            position: absolute;
+            top: -1px;
+            left: 0px;
+            z-index: 1;
+        }
+
+        .last {
+            width: 96px;
+            height: 25px;
+            position: relative;
+            border: 1px solid #e5e5e5;
+            border-left: none;
+            background-color: #f6f6f6;
+        }
+
+        .last::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 11.5px 0 11.5px 11.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent white;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+        }
+
+        .last .left {
+            width: 0;
+            height: 0;
+            border-width: 12.5px 0 12.5px 12.5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #e5e5e5;
+            position: absolute;
+            top: -1px;
+            left: 0px;
+            z-index: 1;
+        }
+
+        .first.active {
+            border-color: #108EE9;
+            color: white;
+            background-color: #108EE9;
+        }
+
+        .first.active::after {
+            border-left-color: #108EE9;
+        }
+
+        .first.active .right {
+            border-left-color: #108EE9;
+        }
+
+        .middle.active {
+            border-color: #108EE9;
+            background-color: #108EE9;
+            color: white;
+        }
+
+        .middle.active::after {
+            border-left-color: #108EE9;
+        }
+
+        .middle.active .right {
+            border-left-color: #108EE9;
+        }
+
+        .middle.active .left {
+            border-left-color: #108EE9;
+        }
+
+        ul li {
+            display: inline-block;
+            margin-right: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function output(arr) {
+            if (arr.length === 1 && typeof arr[0] === 'object') {
+                let div = document.createElement('div');
+                div.classList.add('stoped');
+                div.innerText = '已终止'
+                document.body.appendChild(div);
+                return;
+            }
+            const ul = document.createElement('ul');
+
+            const first = document.createElement('li');
+            const middle1 = document.createElement('li');
+            const middle2 = document.createElement('li');
+            const last = document.createElement('li');
+
+
+            first.classList.add('first');
+            middle1.classList.add('middle');
+            middle2.classList.add('middle');
+            last.classList.add('last');
+            
+            first.innerHTML = `<div class="right"></div><span>${data[0].name}</span>`;
+            middle1.innerHTML = `<div class="left"></div><div class="right"></div><span>${data[1].name}</span>`;
+            middle2.innerHTML = `<div class="left"></div><div class="right"></div><span>${data[2].name}</span>`;
+            last.innerHTML = `<div class="right"></div><span>${data[3].name}</span>`;
+
+            
+
+            if (data[0].isCurrentStatus) {
+                first.classList.add('active');
+            }
+
+            if (data[1].isCurrentStatus) {
+                middle1.classList.add('active');
+            }
+
+            if (data[2].isCurrentStatus) {
+                middle2.classList.add('active');
+            }
+
+            if (data[3].isCurrentStatus) {
+                last.classList.add('active');
+            }
+
+            ul.appendChild(first);
+            ul.appendChild(middle1);
+            ul.appendChild(middle2);
+            ul.appendChild(last);
+
+            document.body.appendChild(ul);
+        }
+
+        const data = [
+            { "name": "待接单", "status": "WAIT_ACCEPT", "isShadowed": true },
+            { "name": "待发货", "status": "WAIT_DELIVER", "isShadowed": true, "isCurrentStatus": true },
+            { "name": "验货入库", "status": "STOCK_IN" },
+            { "name": "已完成", "status": "DELIVERED" },
+        ];
+
+        output(data);
+    </script>
+
+</body>
+
+</html>
